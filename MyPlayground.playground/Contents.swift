@@ -291,8 +291,8 @@ func isUppercase(_ string: String) -> Bool {
     string == string.uppercased()
 }
 
-let string = "HELLO, WORLD"
-let result1 = isUppercase(string)
+let string1 = "HELLO, WORLD"
+let result1 = isUppercase(string1)
 
 
 // 另一种方法是在第一个名字之前写一个第二个名字: 一个外部使用，一个内部使用:
