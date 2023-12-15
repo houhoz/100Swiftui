@@ -411,3 +411,108 @@ print(onlyT)
 
 
 // Structs
+// 通过结构体，我们可以创建自己的自定义数据类型，并拥有自己的属性和方法：
+
+struct Album {
+    let title: String
+    let artist: String
+    var isReleased = true
+
+    func printSummary() {
+        print("\(title) by \(artist)")
+    }
+}
+
+let red = Album(title: "Red", artist: "Taylor Swift")
+print(red.title)
+red.printSummary()
+
+//mutating 关键字
+//mutating func removeFromSale() {
+//    isReleased = false
+//}
+
+
+struct Employee {
+    let name: String
+    var vacationAllocated = 14
+    var vacationTaken = 0
+
+    var vacationRemaining: Int {
+        get {
+            vacationAllocated - vacationTaken
+        }
+
+        set {
+            vacationAllocated = vacationTaken + newValue
+        }
+    }
+}
+
+
+
+struct Game {
+    var score = 0 {
+        didSet {
+            print("Score is now \(score)")
+        }
+    }
+}
+
+var game = Game()
+game.score += 10
+game.score -= 3
+
+
+struct Player {
+    let name: String
+    let number: Int
+
+    init(name: String) {
+        self.name = name
+        number = Int.random(in: 1...99)
+    }
+}
+
+
+struct BankAccount {
+    private(set) var funds = 0
+
+    mutating func deposit(amount: Int) {
+        funds += amount
+    }
+
+    mutating func withdraw(amount: Int) -> Bool {
+        if funds > amount {
+            funds -= amount
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+
+// class
+
+//class Employee {
+//    let hours: Int
+//
+//    init(hours: Int) {
+//        self.hours = hours
+//    }
+//
+//    func printSummary() {
+//        print("I work \(hours) hours a day.")
+//    }
+//}
+//
+//class Developer: Employee {
+//    func work() {
+//        print("I'm coding for \(hours) hours.")
+//    }
+//}
+//
+//let novall = Developer(hours: 8)
+//novall.work()
+//novall.printSummary()
