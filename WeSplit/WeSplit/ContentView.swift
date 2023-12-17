@@ -1,65 +1,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var checkAmount = 0.0
-    @State private var numberOfPeople = 2
-    @State private var tipPercentage = 20
-    let tipPercentages = [10, 15, 20, 25, 0]
-    @FocusState private var amountIsFocused: Bool
+    var body: some View {
+        Button("Button 1") { }
+              .buttonStyle(.bordered)
+          Button("Button 2", role: .destructive) { }
+              .buttonStyle(.bordered)
+          Button("Button 3") { }
+              .buttonStyle(.borderedProminent)
+              .tint(.mint)
+          Button("Button 4", role: .destructive) { }
+              .buttonStyle(.borderedProminent)
 
-    
-    var totalPerPerson: Double {
-        let peopleCount = Double(numberOfPeople + 2)
-        let tipSelection = Double(tipPercentage)
-
-        let tipValue = checkAmount / 100 * tipSelection
-        let grandTotal = checkAmount + tipValue
-        let amountPerPerson = grandTotal / peopleCount
-
-        return amountPerPerson
-    }
-    
-var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                        .keyboardType(.decimalPad)
-                        .focused($amountIsFocused)
-
-                }
-                Section {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                }
-                Picker("Number of people", selection: $numberOfPeople) {
-                       ForEach(2..<100) {
-                           Text("\($0) people")
-                       }
-                }
-                .pickerStyle(.navigationLink)
-                
-                Section("How much tip do you want to leave111?") {
-                    Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
-                            Text($0, format: .percent)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-
-                }
-            }
-            .navigationTitle("WeSplit")
-            .toolbar {
-                if amountIsFocused {
-                    Button("Done") {
-                        amountIsFocused = false
-                    }
-                }
-            }
+        Button {
+            print("Button was tapped")
+        } label: {
+            Text("Tap me!")
+                .padding()
+                .foregroundStyle(.white)
+                .background(.red)
         }
+        Button {
+            print("Edit button was tapped")
+        } label: {
+            Image(systemName: "pencil")
+        }
+        Button("Edit", systemImage: "pencil") {
+            print("Edit button was tapped")
+        }
+        Button {
+            print("Edit button was tapped")
+        } label: {
+            Label("Edit", systemImage: "pencil")
+                .padding()
+                .foregroundStyle(.white)
+                .background(.red)
+        }
+
+    }
+    func executeDelete() {
+        print("Now deleting…")
     }
 }
-
 #Preview {
     ContentView()
 }
